@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppState } from './core/model/app.value';
+import { GeneralService } from './core/service/general.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() { }
+  AppState = AppState;
+
+  constructor(
+    public generalService: GeneralService
+  ) { }
 
 
 

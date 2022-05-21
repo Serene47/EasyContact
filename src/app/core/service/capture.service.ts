@@ -68,8 +68,7 @@ export class CaptureService {
     const xOffset = Math.max((videoWidth - width) / 2, 0);
     const yOffset = Math.max((videoHeight - height) / 2, 0);
 
-    context.drawImage(video, 0, 0, width, height,
-      xOffset, yOffset, width, height);
+    context.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, width, height);
 
     return canvas.toDataURL("image/png")
 

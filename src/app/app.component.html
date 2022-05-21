@@ -11,6 +11,8 @@
 
   </div>
 
-  <app-card-content class="sm-card"></app-card-content>
+  <app-card-content class="sm-card" 
+    [ngClass]="{ 'open' : (generalService.state$ | async) != AppState.STREAM }" >
+  </app-card-content>
 
 </main>

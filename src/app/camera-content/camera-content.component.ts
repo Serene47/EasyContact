@@ -1,5 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AppState } from '../core/model/app.value';
 import { CaptureService } from '../core/service/capture.service';
 import { GeneralService } from '../core/service/general.service';
 import { WINDOW } from '../core/tokens/browser';
@@ -82,6 +83,7 @@ export class CameraContentComponent implements OnInit {
     const image = this.captureService.capture(video, canvas);
 
     this.generalService.capturedImage$.next(image);
+    this.generalService.state$.next(AppState.PROCESSING);
 
   }
 

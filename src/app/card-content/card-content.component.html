@@ -1,1 +1,22 @@
-<p>card-content works!</p>
+
+
+<div class="container">
+
+  <div class="captured-image" *ngIf="capturedImage">
+
+    <div class="image-container" >
+
+      <img [src]="capturedImage" alt="Captured image">
+
+    </div>
+
+    <button id="retake" (click)="retake()" mat-raised-button color="primary">Retake</button>
+  
+  </div>
+
+
+</div>
+
+
+
+

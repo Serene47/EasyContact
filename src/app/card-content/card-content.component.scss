@@ -1,4 +1,77 @@
+
+@use '@angular/material' as mat;
+
 :host {
   display: block;
-  background-color: teal;
+  background-color: #FFF;
+}
+
+.container {
+  width: 90%;
+  height: calc(100% - 72px - 64px);
+  margin: 36px auto; 
+  padding: 24px;
+
+  @include mat.elevation(4);
+
+}
+
+.captured-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .image-container {
+    position: relative;
+    padding: 8px;
+    width: 50%;
+    max-width: 300px;
+    border: 2px solid #ccc;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      position : absolute;
+      background-color: #FFF;
+      z-index: 2;
+    }
+
+    &::after  {
+      width: calc(100% + 4px);
+      height: 80%;
+      top: 10%;
+      left: -2px;
+    }
+
+    &::before {
+      height: calc(100% + 4px);
+      width: 80%;
+      left: 10%;
+      top: -2px;
+    }
+
+
+  }
+
+  img {
+    width: 100%;
+    vertical-align: middle;
+    position: relative;
+    z-index: 3;
+  }
+
+} 
+
+#retake {
+  margin-left: 24px;
+}
+
+@media (min-width : 720px) {
+  
+  #retake {
+    display: none;
+  }
+
+
 }
