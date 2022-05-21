@@ -1,1 +1,31 @@
-<p>camera-content works!</p>
+
+<div class="container">
+
+  <mat-spinner color="primary" [diameter]="50" *ngIf="!(isStreaming || isCameraError)" ></mat-spinner>
+
+  <div class="capture-content" [ngClass]="{ 'hidden' : !isStreaming }" >
+
+    <h4>Capture the image of the contact.</h4>
+
+    <video #video (canplay)="onPlayerReady()" ></video>
+
+    <canvas #canvas ></canvas>
+
+    <button mat-fab color="primary" id="capture-button" (click)="capture()" >
+      <mat-icon>photo_camera</mat-icon>
+    </button>
+
+  </div> 
+
+  <div class="error-content" *ngIf="isCameraError">
+
+    <h2> <mat-icon>sentiment_dissatisfied</mat-icon> <span> Can't make camera work !</span></h2>
+
+    <p>{{errorMessage}}</p>
+
+  </div> 
+
+</div>
+
+<canvas #canvas ></canvas>
+
