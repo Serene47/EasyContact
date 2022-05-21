@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AppState } from '../core/model/app.value';
 import { CaptureService } from '../core/service/capture.service';
 import { GeneralService } from '../core/service/general.service';
+import { TextProcessingService } from '../core/service/text-processing.service';
 import { WINDOW } from '../core/tokens/browser';
 
 @Component({
@@ -30,7 +31,8 @@ export class CameraContentComponent implements OnInit {
   constructor(
     @Inject(WINDOW) private window: Window,
     private captureService: CaptureService,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    private textProcessingService: TextProcessingService
   ) { }
 
   ngOnInit(): void {
@@ -84,6 +86,12 @@ export class CameraContentComponent implements OnInit {
 
     this.generalService.capturedImage$.next(image);
     this.generalService.state$.next(AppState.PROCESSING);
+
+    this.textProcessingService.extractData(image)
+      .subscribe(
+        result => { console.log(result) }
+      )
+
 
   }
 

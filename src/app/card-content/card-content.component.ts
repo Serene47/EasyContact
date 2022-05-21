@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppState } from '../core/model/app.value';
 import { GeneralService } from '../core/service/general.service';
+import { TextProcessingService } from '../core/service/text-processing.service';
 
 @Component({
   selector: 'app-card-content',
@@ -15,11 +16,13 @@ export class CardContentComponent implements OnInit, OnDestroy {
   capturedImageSubscription!: Subscription;
 
   constructor(
-    public generalService: GeneralService
+    public generalService: GeneralService,
+    private textProcessingService: TextProcessingService
   ) { }
 
   ngOnInit(): void {
     this.listenImageCapture();
+    this.listenResult();
   }
 
   listenImageCapture() {
@@ -29,6 +32,15 @@ export class CardContentComponent implements OnInit, OnDestroy {
         .subscribe(
           image => { this.capturedImage = image; }
         )
+
+  }
+
+  listenResult() {
+
+    this.textProcessingService.result$
+      .subscribe(
+        result => { console.log(result) }
+      )
 
   }
 
