@@ -11,43 +11,41 @@ main {
   display: flex;
   align-items: stretch;
   height: 100%;
+  position: relative;
 }
 
 .container app-camera-content {
   flex-basis: 100%;
 }
 
-.container app-card-content.md-card {
-  display: none;
-}
-
-app-card-content.sm-card {
+.container app-card-content {
+  position: absolute;
   width: 100%;
   height: 100%;
-  transform: translateX(100%) translateY(-100%);
-  transition-duration: 200ms;
-  transition-property: transform;
+  left: 100%;
+  transition-duration: 400ms;
+  transition-property: left;
   transition-timing-function: ease-in-out;
 }
 
-app-card-content.sm-card.open {
-  transform: translateX(0) translateY(-100%);
+.container app-card-content.open {
+  left: 0;
 }
 
 @media( min-width : 720px ) {
+
+  .container {
+    position: static;
+  }
 
   .container app-camera-content {
     flex-basis: 50%;
   }
 
-  .container app-card-content.md-card {
-    display: block;
+  .container app-card-content {
     flex-basis: 50%;
-  }
-
-  app-card-content.sm-card {
-    display: none;
-  }
+    position: static;
+  } 
 
 }
 

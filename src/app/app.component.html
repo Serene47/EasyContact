@@ -7,12 +7,10 @@
 
     <app-camera-content></app-camera-content>
 
-    <app-card-content class="md-card"></app-card-content>
+    <app-card-content  
+      [ngClass]="{ 'open' : (generalService.state$ | async) != AppState.STREAM }">
+    </app-card-content>
 
   </div>
-
-  <app-card-content class="sm-card" 
-    [ngClass]="{ 'open' : (generalService.state$ | async) != AppState.STREAM }" >
-  </app-card-content>
 
 </main>
