@@ -9,3 +9,12 @@ export interface ParsedResult {
   phones: string[];
 
 }
+
+export interface ContactDetails {
+
+  name: string;
+
+  phones: string[];
+  emails: string[];
+
+}

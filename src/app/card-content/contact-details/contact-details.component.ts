@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ParsedResult } from 'src/app/core/model/app.types';
+import { VcardService } from 'src/app/core/service/vcard.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -23,7 +24,8 @@ export class ContactDetailsComponent implements OnInit {
   formSubmitted = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private vcardService: VcardService
   ) { }
 
   ngOnInit(): void { }
@@ -47,6 +49,11 @@ export class ContactDetailsComponent implements OnInit {
   createCard() {
 
     this.formSubmitted = true;
+
+    if (this.form.invalid)
+      return;
+
+    this.vcardService.generateVCard(this.form.value)
 
   }
 
