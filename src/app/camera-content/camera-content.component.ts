@@ -87,9 +87,17 @@ export class CameraContentComponent implements OnInit {
     this.generalService.capturedImage$.next(image);
     this.generalService.state$.next(AppState.PROCESSING);
 
-    this.textProcessingService.extractData(image)
+    this.textProcessingService.getContent(image)
       .subscribe(
-        result => { console.log(result) }
+        result => {
+
+          let data = this.textProcessingService.extractData(result);
+
+          this.generalService.result$.next(data);
+
+          this.generalService.state$.next(AppState.RESULT);
+
+        }
       )
 
 

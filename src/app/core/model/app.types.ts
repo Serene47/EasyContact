@@ -1,7 +1,10 @@
 
 export interface ParsedResult {
 
-  nameSuggestions: string[];
+  nameSuggestions: {
+    first50: string[];
+    all: string[];
+  };
   emails: string[];
   phones: string[];
 

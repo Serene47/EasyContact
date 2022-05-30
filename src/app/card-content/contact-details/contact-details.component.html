@@ -1,0 +1,96 @@
+<form [formGroup]="form" (ngSubmit)="createCard()"  >
+
+  <!-- *ngIf="(generalService.state$ | async) == AppState.RESULT" -->
+
+  <div class="contact-fields"  >
+
+    <div class="control">
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Name</mat-label>
+        <input type="text" name="name" placeholder="Name" matInput formControlName="name" required  >
+        <mat-error >
+          <span *ngIf="form.get('name')!.errors?.['required']">Name is required</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-chip-list *ngIf="result.nameSuggestions.first50.length > 1">
+        <mat-chip color="accent" *ngFor="let suggestion of result.nameSuggestions.first50" >
+          {{suggestion}}
+        </mat-chip>
+      </mat-chip-list>
+
+    </div>
+
+    <div class="fieldset phones" formArrayName="phones">
+
+      <h4>Phones</h4>
+
+      <div class="iterable-control" *ngFor="let phone of phonesForm.controls; index as i">
+
+        <mat-form-field appearance="outline"   >
+          <mat-label>Phone {{i + 1}}</mat-label>
+          <input type="text" name="name" placeholder="Name" matInput formControlName="{{i}}"  >
+        </mat-form-field>
+
+        <button type="button" mat-icon-button color="warn" 
+          (click)="removeControl('phones', i)" >
+          <mat-icon>remove</mat-icon>
+        </button>
+
+      </div>
+
+      <p class="empty-message" *ngIf="!phonesForm.controls.length">
+        No phones are present.
+      </p>
+
+      <mat-error *ngIf="formSubmitted && phonesForm.errors?.['required']" >
+        <span >Atleast one phone is required</span>
+      </mat-error>
+
+      <button class="add-button" type="button" mat-stroked-button color="primary"
+        (click)="addControl('phones')" >
+        <mat-icon>add</mat-icon>
+        Add phone
+      </button>
+
+    </div>
+
+    <div class="fieldset emails" formArrayName="emails">
+
+      <h4>Emails</h4>
+
+      <div class="iterable-control" *ngFor="let email of emailsForm.controls; index as i" >
+
+        <mat-form-field appearance="outline"   >
+          <mat-label>Email {{i + 1}}</mat-label>
+          <input type="text" name="name" placeholder="Name" matInput formControlName="{{i}}" >
+        </mat-form-field>
+
+        <button type="button" mat-icon-button color="warn"
+          (click)="removeControl('emails', i)" >
+          <mat-icon>remove</mat-icon>
+        </button>
+
+      </div>
+
+      <p class="empty-message" *ngIf="!emailsForm.controls.length">
+        No emails are present.
+      </p>
+
+      <button class="add-button" type="button" mat-stroked-button color="primary"
+        (click)="addControl('emails')" >
+        <mat-icon>add</mat-icon>
+        Add email
+      </button>
+
+    </div>
+
+
+  </div>
+
+  <button type="submit" mat-raised-button color="primary">
+    Download as V-Card
+  </button>
+
+</form>

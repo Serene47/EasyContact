@@ -1,0 +1,51 @@
+
+:host {
+  display: block;
+}
+
+.contact-fields {
+  margin: 48px 0 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .iterable-control {
+    display: flex; 
+
+    button {
+      margin: 4px 12px 0;
+    }
+
+  }
+
+  .empty-message {
+    color: #ccc;
+    margin: 12px 0;
+  }
+
+  .add-button {
+    margin-top: 12px; 
+
+    mat-icon {
+      vertical-align: middle;
+    }
+  }
+
+  @media( min-width : 1080px) {
+
+    
+    grid-template-columns: 1fr 1fr; 
+
+  
+    .fieldset.emails,
+    .fieldset.phones {
+      grid-row: 2;
+    } 
+  
+  }
+
+}

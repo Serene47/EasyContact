@@ -9,11 +9,18 @@
 .container {
   width: 90%;
   height: calc(100% - 72px - 64px);
-  margin: 36px auto; 
   padding: 24px;
+  margin: 36px auto;
 
   @include mat.elevation(4);
 
+}
+
+.scroll-content {
+  padding: 0 24px;
+  margin: 0 -12px ;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .captured-image {
@@ -65,13 +72,16 @@
 
 #retake {
   margin-left: 24px;
-}
 
-@media (min-width : 720px) {
-  
-  #retake {
+  @media (min-width : 720px) {
     display: none;
   }
 
-
 }
+
+mat-progress-bar {
+  display: block;
+  width: 80%;
+  margin: 48px auto;
+}
+
