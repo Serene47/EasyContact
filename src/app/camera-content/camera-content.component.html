@@ -11,7 +11,8 @@
 
     <canvas #canvas ></canvas>
 
-    <button mat-fab color="primary" id="capture-button" (click)="capture()" >
+    <button mat-fab color="primary" id="capture-button" (click)="capture()"
+      [disabled]="(generalService.state$ | async ) == AppState.PROCESSING" >
       <mat-icon>photo_camera</mat-icon>
     </button>
 

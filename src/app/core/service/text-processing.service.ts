@@ -26,6 +26,10 @@ export class TextProcessingService {
 
     this.worker = createWorker({
       logger: log => {
+
+        let { jobId, progress } = log;
+
+        console.log({ jobId, progress })
         this.tesseractLog$.next(log)
       },
       errorHandler: error => {
@@ -53,8 +57,8 @@ export class TextProcessingService {
 
         (async () => {
 
-          if (this.prevJobId)
-            await this.worker.terminate(this.prevJobId);
+          //if (this.prevJobId)
+          //await this.worker.terminate(this.prevJobId);
 
           let { jobId } = await this.worker.load();
 

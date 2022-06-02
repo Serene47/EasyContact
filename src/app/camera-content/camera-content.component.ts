@@ -13,6 +13,8 @@ import { WINDOW } from '../core/tokens/browser';
 })
 export class CameraContentComponent implements OnInit {
 
+  AppState = AppState;
+
   isStreaming = false;
   isCameraError = false;
 
@@ -31,7 +33,7 @@ export class CameraContentComponent implements OnInit {
   constructor(
     @Inject(WINDOW) private window: Window,
     private captureService: CaptureService,
-    private generalService: GeneralService,
+    public generalService: GeneralService,
     private textProcessingService: TextProcessingService
   ) { }
 
@@ -86,20 +88,6 @@ export class CameraContentComponent implements OnInit {
 
     this.generalService.capturedImage$.next(image);
     this.generalService.state$.next(AppState.PROCESSING);
-
-    this.textProcessingService.getContent(image)
-      .subscribe(
-        result => {
-
-          let data = this.textProcessingService.extractData(result);
-
-          this.generalService.result$.next(data);
-
-          this.generalService.state$.next(AppState.RESULT);
-
-        }
-      )
-
 
   }
 

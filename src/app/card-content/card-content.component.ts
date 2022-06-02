@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { map, Subscription, switchMap, tap } from 'rxjs';
 import { ParsedResult } from '../core/model/app.types';
 import { AppState } from '../core/model/app.value';
 import { GeneralService } from '../core/service/general.service';
@@ -33,7 +33,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   capturedImageSubscription!: Subscription;
   progressSubscription!: Subscription;
-  resultSubscription!: Subscription;
 
   constructor(
     public generalService: GeneralService,
@@ -47,7 +46,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
     this.listenImageCapture();
     this.listenProgress();
-    this.listenResult();
   }
 
   initForm() {
@@ -64,10 +62,29 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
     this.capturedImageSubscription =
       this.generalService.capturedImage$
+        .pipe(
+          tap(image => { this.capturedImage = image; }),
+          switchMap(
+            image => {
+
+              this.progress = 0;
+
+              return this.textProcessingService.getContent(image)
+            }
+          ),
+          map(
+            imageContent => this.textProcessingService.extractData(imageContent)
+          )
+        )
         .subscribe(
-          image => {
-            this.capturedImage = image;
-            this.progress = 0;
+          result => {
+
+            this.result = result;
+
+            this.populateForm(result);
+
+            this.generalService.state$.next(AppState.RESULT);
+
           }
         )
 
@@ -83,39 +100,29 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   }
 
-  listenResult() {
+  populateForm(result: ParsedResult) {
 
-    this.resultSubscription =
-      this.generalService.result$
-        .subscribe(
-          result => {
+    this.emailsForm.clear();
+    this.phonesForm.clear();
+    this.form.reset();
 
-            this.result = result;
+    this.form.patchValue({ name: result.nameSuggestions.first50[0] })
 
-            this.emailsForm.clear();
-            this.phonesForm.clear();
-            this.form.reset();
-
-            this.form.patchValue({ name: result.nameSuggestions.first50[0] })
-
-            result.emails.forEach(
-              email => {
-                this.emailsForm.push(
-                  this.formBuilder.control(email)
-                )
-              }
-            );
-
-            result.phones.forEach(
-              phone => {
-                this.phonesForm.push(
-                  this.formBuilder.control(phone)
-                )
-              }
-            );
-
-          }
+    result.emails.forEach(
+      email => {
+        this.emailsForm.push(
+          this.formBuilder.control(email)
         )
+      }
+    );
+
+    result.phones.forEach(
+      phone => {
+        this.phonesForm.push(
+          this.formBuilder.control(phone)
+        )
+      }
+    );
 
   }
 
@@ -127,7 +134,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.capturedImageSubscription.unsubscribe();
     this.progressSubscription.unsubscribe();
-    this.resultSubscription.unsubscribe();
   }
 
 }
