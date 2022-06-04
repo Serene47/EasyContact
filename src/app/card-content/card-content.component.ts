@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { map, Subscription, switchMap, tap } from 'rxjs';
 import { ParsedResult } from '../core/model/app.types';
 import { AppState } from '../core/model/app.value';
@@ -17,16 +17,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   capturedImage: string | null = null;
 
-  form!: FormGroup;
-
-  get phonesForm() {
-    return <FormArray>this.form.get("phones")!
-  };
-
-  get emailsForm() {
-    return <FormArray>this.form.get("emails")!
-  };
-
   result: ParsedResult | null = null;
 
   progress = 0;
@@ -42,21 +32,10 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.initForm();
-
     this.listenImageCapture();
     this.listenProgress();
   }
 
-  initForm() {
-
-    this.form = this.formBuilder.group({
-      name: [null, [Validators.required]],
-      phones: this.formBuilder.array([], [Validators.required]),
-      emails: this.formBuilder.array([])
-    });
-
-  }
 
   listenImageCapture() {
 
@@ -81,8 +60,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
             this.result = result;
 
-            this.populateForm(result);
-
             this.generalService.state$.next(AppState.RESULT);
 
           }
@@ -97,32 +74,6 @@ export class CardContentComponent implements OnInit, OnDestroy {
         .subscribe(
           progress => { this.progress = progress * 100 }
         )
-
-  }
-
-  populateForm(result: ParsedResult) {
-
-    this.emailsForm.clear();
-    this.phonesForm.clear();
-    this.form.reset();
-
-    this.form.patchValue({ name: result.nameSuggestions.first50[0] })
-
-    result.emails.forEach(
-      email => {
-        this.emailsForm.push(
-          this.formBuilder.control(email)
-        )
-      }
-    );
-
-    result.phones.forEach(
-      phone => {
-        this.phonesForm.push(
-          this.formBuilder.control(phone)
-        )
-      }
-    );
 
   }
 

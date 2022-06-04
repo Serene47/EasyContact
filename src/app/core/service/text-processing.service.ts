@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { filter, map, Observable, Subject } from "rxjs";
 import { createWorker, Worker } from "tesseract.js";
 import { ParsedResult } from "../model/app.types";
-import { CAPITAL_CASE_NAME_REGEX, EMAIL_REGEX, PHONE_REGEX, TITLE_CASE_NAME_REGEX } from "../model/app.value";
+import { CAPITAL_CASE_NAME_REGEX, EMAIL_REGEX, GENERIC_NAME_REGEX, LETTER_ONLY_NAME_REGEX, PHONE_REGEX, TITLE_CASE_NAME_REGEX } from "../model/app.value";
 
 @Injectable({
   providedIn: "root"
@@ -100,14 +100,33 @@ export class TextProcessingService {
 
     let first50TitleCaseNames = first50Text.match(TITLE_CASE_NAME_REGEX);
 
-    let first50Names = [...first50CapitalCaseNames ?? [], ...first50TitleCaseNames ?? []].map(name => name.trim())
+    let first50Names = [
+      ...first50CapitalCaseNames ?? [],
+      ...first50TitleCaseNames ?? []
+    ].map(name => name.trim())
+
+    let allCapitalCaseNames = textContent.match(CAPITAL_CASE_NAME_REGEX);
+
+    let allTitleCaseNames = textContent.match(CAPITAL_CASE_NAME_REGEX);
+
+    let allLetterOnlyNames = textContent.match(LETTER_ONLY_NAME_REGEX);
+
+    let allGenericNames = textContent.match(GENERIC_NAME_REGEX);
+
+    let allNames = [
+      ...allCapitalCaseNames ?? [],
+      ...allTitleCaseNames ?? [],
+      ...allLetterOnlyNames ?? [],
+      ...allGenericNames ?? []
+    ].map(name => name.trim())
+
 
     return {
       emails: emails,
       phones: phones,
       nameSuggestions: {
         first50: first50Names,
-        all: []
+        all: allNames
       }
     }
 

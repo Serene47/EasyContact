@@ -11,6 +11,7 @@
 
   mat-form-field {
     width: 100%;
+    display: block;
   }
 
   .iterable-control {
@@ -40,6 +41,14 @@
     
     grid-template-columns: 1fr 1fr; 
 
+    .control.name-control {
+      grid-column: 1/ span 2;
+
+      mat-form-field {
+        width: 50%; 
+      }
+
+    }
   
     .fieldset.emails,
     .fieldset.phones {
@@ -49,6 +58,11 @@
   }
 
 }
+
+mat-chip-list {
+  display: block;
+  margin-bottom: 12px;
+} 
 
 .action-buttons {
   margin: 48px 0 36px;

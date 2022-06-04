@@ -4,7 +4,7 @@
 
   <div class="contact-fields"  >
 
-    <div class="control">
+    <div class="control name-control">
 
       <mat-form-field appearance="outline" >
         <mat-label>Name</mat-label>
@@ -14,11 +14,18 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-chip-list *ngIf="result.nameSuggestions.first50.length > 1">
-        <mat-chip color="accent" *ngFor="let suggestion of result.nameSuggestions.first50" >
-          {{suggestion}}
-        </mat-chip>
-      </mat-chip-list>
+      <mat-chip-list [selectable]="false" *ngIf="suggestions && suggestions.length > 1" >
+        <ng-container *ngFor="let suggestion of suggestions" >
+          <mat-chip color="accent" *ngIf="suggestion != form.get('name')!.value"
+            (click)="onSuggestionSelect(suggestion)"  >
+            {{suggestion}}
+          </mat-chip>
+        </ng-container>
+      </mat-chip-list> 
+
+      <button type="button" mat-button color="primary" 
+        class="show-all-suggestion" *ngIf="isShowMoreVissible"
+        (click)="showAllSuggestions()" >Show all</button>
 
     </div>
 

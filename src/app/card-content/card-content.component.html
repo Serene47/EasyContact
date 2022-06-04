@@ -34,7 +34,7 @@
       mode="determinate" [value]="progress" ></mat-progress-bar>
 
     <app-contact-details *ngIf="(generalService.state$ | async) == AppState.RESULT && result" 
-      [result]="result" [form]="form" ></app-contact-details>
+      [result]="result" ></app-contact-details>
 
   </div>
 
