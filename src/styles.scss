@@ -43,3 +43,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 0;
   box-sizing: border-box;
 }
+
+.text-primary {
+  color: mat.get-color-from-palette($easy-contact-primary, 500);
+}
+
+.text-accent {
+  color: mat.get-color-from-palette($easy-contact-accent, 500);
+}

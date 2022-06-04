@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths">
+  <g>
+    <g xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path d="M321.768,0H94.216c-7.84,0-14.208,7.168-14.208,16v32c0,8.832,6.368,16,14.208,16H321.8c7.84,0,14.208-7.168,14.208-16V16    C336.008,7.168,329.64,0,321.768,0z" fill="currentColor" data-original="currentColor" class="hovered-path"></path>
+      </g>
+    </g>
+    <g xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path d="M424.872,252.16L315.24,96H102.184c-13.44,11.744-22.176,28.832-22.176,48v160c0,17.6,14.4,32,32,32s32-14.4,32-32v16    c0,17.664,14.336,32,32,32s32-14.336,32-32v16c0,17.664,14.336,32,32,32s32-14.336,32-32v144c0,17.6,14.4,32,32,32    c17.6,0,32-14.4,32-32V242.88l38.944,48.96c10.88,14.08,31.04,16.32,44.8,5.12C433.832,286.08,436.072,265.92,424.872,252.16z" fill="currentColor" data-original="currentColor" class="hovered-path"></path>
+      </g>
+    </g>
+  </g>
+</svg>

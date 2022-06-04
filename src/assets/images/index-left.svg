@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve">
+  <g>
+    <g xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path d="M496,176.002h-32c-8.832,0-16,6.368-16,14.208v227.552c0,7.872,7.168,14.24,16,14.24h32c8.832,0,16-6.368,16-14.208    V190.21C512,182.37,504.832,176.002,496,176.002z" fill="currentColor" data-original="currentColor"></path>
+      </g>
+    </g>
+    <g xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <path d="M259.84,87.106c-13.76-11.2-33.92-8.928-44.8,5.152c-11.2,13.76-8.96,33.92,5.12,44.8l48.96,38.944H32    c-17.6,0-32,14.4-32,32c0,17.6,14.4,32,32,32h144c-17.664,0-32,14.336-32,32s14.336,32,32,32h16c-17.664,0-32,14.336-32,32    s14.336,32,32,32h16c-17.6,0-32,14.4-32,32c0,17.6,14.4,32,32,32h160c19.168,0,36.256-8.736,48-22.176V196.77L259.84,87.106z" fill="currentColor" data-original="currentColor"></path>
+      </g>
+    </g>
+  </g>
+</svg>

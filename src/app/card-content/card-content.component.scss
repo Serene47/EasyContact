@@ -16,6 +16,50 @@
 
 }
 
+.init-content {
+
+  height: 100%;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  .title {
+
+    margin-bottom: 64px;
+
+    .mat-display-1 {
+      margin-bottom: 24px;
+    }
+
+    p {
+      color : #888;
+    }
+
+  }
+
+  h3 { 
+
+    * {
+      vertical-align: middle;
+    }
+
+    &.info-line-1 mat-icon {
+      margin-right:12px;
+    }
+
+    &.info-line-2 mat-icon {
+      margin-left:12px;
+    }
+
+  }
+
+}
+
 .scroll-content {
   padding: 0 24px;
   margin: 0 -12px ;
