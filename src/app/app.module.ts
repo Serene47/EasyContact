@@ -17,13 +17,15 @@ import { CameraContentComponent } from './camera-content/camera-content.componen
 import { CardContentComponent } from './card-content/card-content.component';
 import { ContactDetailsComponent } from './card-content/contact-details/contact-details.component';
 import { ErrorContentComponent } from './core/component/error-content/error-content.component';
+import { InitContentComponent } from './core/component/init-content/init-content.component';
 @NgModule({
   declarations: [
     AppComponent,
     CameraContentComponent,
     CardContentComponent,
     ContactDetailsComponent,
-    ErrorContentComponent
+    ErrorContentComponent,
+    InitContentComponent
   ],
   imports: [
     BrowserModule,
