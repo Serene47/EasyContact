@@ -1,5 +1,4 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AppState } from '../core/model/app.value';
 import { CaptureService } from '../core/service/capture.service';
 import { GeneralService } from '../core/service/general.service';
@@ -19,13 +18,6 @@ export class CameraContentComponent implements OnInit {
   isCameraError = false;
 
   errorMessage?: string;
-
-  imageSource?: string;
-
-  canvasWidth!: number;
-  canvasHeight!: number;
-
-  windowResizeSubscription!: Subscription;
 
   @ViewChild("video") video!: ElementRef<HTMLVideoElement>;
   @ViewChild("canvas") canvas!: ElementRef<HTMLCanvasElement>;
@@ -68,6 +60,8 @@ export class CameraContentComponent implements OnInit {
 
           }
 
+          this.generalService.state$.next(AppState.CAMERA_ERROR);
+
         }
       })
 
@@ -76,6 +70,8 @@ export class CameraContentComponent implements OnInit {
   onPlayerReady() {
 
     this.isStreaming = true;
+
+    this.generalService.state$.next(AppState.STREAM);
 
   }
 

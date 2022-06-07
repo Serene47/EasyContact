@@ -25,7 +25,7 @@
 
       <button type="button" mat-button color="primary" 
         class="show-all-suggestion" *ngIf="isShowMoreVissible"
-        (click)="showAllSuggestions()" >Show all</button>
+        (click)="showAllSuggestions()" >Show all suggestions</button>
 
     </div>
 
@@ -52,7 +52,7 @@
       </p>
 
       <mat-error *ngIf="formSubmitted && phonesForm.errors?.['required']" >
-        <span >Atleast one phone is required</span>
+        <span >Atleast one phone is required to create contact.</span>
       </mat-error>
 
       <button class="add-button" type="button" mat-stroked-button color="primary"

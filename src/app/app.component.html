@@ -8,7 +8,10 @@
     <app-camera-content></app-camera-content>
 
     <app-card-content  
-      [ngClass]="{ 'open' : (generalService.state$ | async) != AppState.STREAM }">
+      [ngClass]="{ 'open' : [AppState.PROCESSING,
+       AppState.RESULT,
+      AppState.OCR_ERROR
+      ].includes((generalService.state$ | async)!) }">
     </app-card-content>
 
   </div>

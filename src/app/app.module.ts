@@ -16,12 +16,14 @@ import { AppComponent } from './app.component';
 import { CameraContentComponent } from './camera-content/camera-content.component';
 import { CardContentComponent } from './card-content/card-content.component';
 import { ContactDetailsComponent } from './card-content/contact-details/contact-details.component';
+import { ErrorContentComponent } from './core/component/error-content/error-content.component';
 @NgModule({
   declarations: [
     AppComponent,
     CameraContentComponent,
     CardContentComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    ErrorContentComponent
   ],
   imports: [
     BrowserModule,

@@ -18,13 +18,9 @@
 
   </div> 
 
-  <div class="error-content" *ngIf="isCameraError">
-
-    <h2> <mat-icon>sentiment_dissatisfied</mat-icon> <span> Can't make camera work !</span></h2>
-
-    <p>{{errorMessage}}</p>
-
-  </div> 
+  <app-error-content *ngIf="(generalService.state$ | async) == AppState.CAMERA_ERROR"
+    title="Can't make camera work !"
+    [description]="errorMessage" ></app-error-content>
 
 </div>
 

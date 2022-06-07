@@ -9,7 +9,7 @@ import { WINDOW } from "../tokens/browser";
 })
 export class GeneralService {
 
-  state$ = new BehaviorSubject<AppState>(AppState.STREAM);
+  state$ = new BehaviorSubject<AppState>(AppState.INIT);
 
   capturedImage$ = new Subject<string>();
 

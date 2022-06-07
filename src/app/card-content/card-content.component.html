@@ -2,15 +2,18 @@
 
 <div class="container">
 
-  <div class="init-content" *ngIf="(generalService.state$ | async) == AppState.STREAM" >
+  <div class="init-content" *ngIf="!capturedImage" >
 
     <div class="title">
+
       <h1 class="text-primary mat-display-1">Easy contact</h1>
+
       <p>Quickly create contact from any surface.</p>
+
     </div>
 
     <h3 class="info-line-1 text-accent"><mat-icon svgIcon="index_left"></mat-icon> <span>Scan your contact there</span> </h3>
-
+    
     <h3  class="info-line-2 text-accent" ><span>View your result here</span><mat-icon svgIcon="index_down"></mat-icon></h3>
 
 
@@ -26,7 +29,8 @@
   
       </div>
   
-      <button id="retake" (click)="retake()" mat-raised-button color="primary">Retake</button>
+      <button id="retake" (click)="retake()" mat-raised-button color="primary"
+        [disabled]="(generalService.state$ | async ) == AppState.PROCESSING">Retake</button>
     
     </div>
 
@@ -35,6 +39,10 @@
 
     <app-contact-details *ngIf="(generalService.state$ | async) == AppState.RESULT && result" 
       [result]="result" ></app-contact-details>
+
+    <app-error-content *ngIf="(generalService.state$ | async) == AppState.OCR_ERROR"
+      title="Something wrong with OCR library"
+      [description]="errorMessage" ></app-error-content>
 
   </div>
 

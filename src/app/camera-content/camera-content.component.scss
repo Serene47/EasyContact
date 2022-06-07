@@ -35,16 +35,8 @@ canvas {
   margin-top: 36px;
 }
 
-.error-content {
-  text-align: center;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.error-content h2 > *{
-  vertical-align: middle;
+app-error-content {
+  margin: 64px 0;
 }
 
 .hidden {

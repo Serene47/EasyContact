@@ -1,8 +1,11 @@
 
 export enum AppState {
+  INIT = "init",
   STREAM = "stream",
   PROCESSING = "processing",
-  RESULT = "result"
+  RESULT = "result",
+  OCR_ERROR = "ocr_error",
+  CAMERA_ERROR = "camera_error"
 }
 
 export const PHONE_REGEX = /\+?\s*(\d[\s-]*){9,15}/g;

@@ -51,3 +51,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-accent {
   color: mat.get-color-from-palette($easy-contact-accent, 500);
 }
+
+.text-warn {
+  color: mat.get-color-from-palette($easy-contact-warn, 500);
+}

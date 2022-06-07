@@ -1,0 +1,19 @@
+
+:host {
+  
+  display: block;
+  text-align: center;
+  
+  h2 {
+
+    & > *{
+      vertical-align: middle;
+    }
+
+    mat-icon {
+      margin-right: 12px;
+    }
+    
+  }
+
+}

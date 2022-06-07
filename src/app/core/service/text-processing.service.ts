@@ -26,10 +26,6 @@ export class TextProcessingService {
 
     this.worker = createWorker({
       logger: log => {
-
-        let { jobId, progress } = log;
-
-        console.log({ jobId, progress })
         this.tesseractLog$.next(log)
       },
       errorHandler: error => {

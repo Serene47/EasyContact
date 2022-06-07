@@ -17,12 +17,14 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   capturedImage: string | null = null;
 
+  progress = 0;
   result: ParsedResult | null = null;
 
-  progress = 0;
+  errorMessage?: string;
 
   capturedImageSubscription!: Subscription;
   progressSubscription!: Subscription;
+  tesseractErrorSubscription!: Subscription;
 
   constructor(
     public generalService: GeneralService,
@@ -34,15 +36,20 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
     this.listenImageCapture();
     this.listenProgress();
-  }
+    this.listenTesseractErrors();
 
+  }
 
   listenImageCapture() {
 
     this.capturedImageSubscription =
       this.generalService.capturedImage$
         .pipe(
-          tap(image => { this.capturedImage = image; }),
+          tap(image => {
+
+            this.capturedImage = image;
+
+          }),
           switchMap(
             image => {
 
@@ -77,14 +84,33 @@ export class CardContentComponent implements OnInit, OnDestroy {
 
   }
 
+  listenTesseractErrors() {
+
+    this.tesseractErrorSubscription =
+      this.textProcessingService.tesseractError$
+        .subscribe(
+          error => {
+
+            console.log(error);
+
+            this.errorMessage = error.message;
+
+            this.generalService.state$.next(AppState.OCR_ERROR);
+
+          }
+        )
+
+  }
+
   retake() {
     this.capturedImage = null;
-    this.generalService.state$.next(AppState.STREAM)
+    this.generalService.state$.next(AppState.STREAM);
   }
 
   ngOnDestroy(): void {
     this.capturedImageSubscription.unsubscribe();
     this.progressSubscription.unsubscribe();
+    this.tesseractErrorSubscription.unsubscribe();
   }
 
 }
