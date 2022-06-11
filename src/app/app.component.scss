@@ -7,45 +7,52 @@ main {
   height: 100%;
 }
 
+.logo {
+  width: 150px;
+}
+
 .container {
   display: flex;
   align-items: stretch;
   height: 100%;
   position: relative;
-}
 
-.container app-camera-content {
-  flex-basis: 100%;
-}
-
-.container app-card-content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 100%;
-  transition-duration: 400ms;
-  transition-property: left;
-  transition-timing-function: ease-in-out;
-}
-
-.container app-card-content.open {
-  left: 0;
-}
-
-@media( min-width : 720px ) {
-
-  .container {
-    position: static;
+  app-camera-content {
+    flex-basis: 100%;
   }
+  
+  app-card-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    transition-duration: 400ms;
+    transition-property: left;
+    transition-timing-function: ease-in-out;
 
-  .container app-camera-content {
-    flex-basis: 50%;
-  }
+    &.open {
+      left: 0;
+    }
 
-  .container app-card-content {
-    flex-basis: 50%;
-    position: static;
   } 
 
+  @media( min-width : 720px ) {
+    position: static;
+
+    app-camera-content {
+      flex-basis: 50%;
+    }
+
+    app-card-content {
+      flex-basis: 50%;
+      position: static;
+    } 
+  
+  }
+
 }
+
+
+
+
 

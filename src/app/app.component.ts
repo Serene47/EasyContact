@@ -11,6 +11,8 @@ import { GeneralService } from './core/service/general.service';
 })
 export class AppComponent implements OnInit {
 
+  imgError = false;
+
   AppState = AppState;
 
   constructor(
